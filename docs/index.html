@@ -4,33 +4,310 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Моей любимой Лэйс</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <style>
+      :root {
+        --bg-color: #fdf6f6;
+        --text-color: #444;
+        --header-color: #d87093; /* PaleVioletRed */
+        --accent-color: #ffb6c1; /* LightPink */
+        --white-color: #ffffff;
+        --font-header: 'Playfair Display', serif;
+        --font-body: 'Montserrat', sans-serif;
+      }
+
       body {
-        font-family: "Arial", sans-serif;
+        font-family: var(--font-body);
+        margin: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 60px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      h1, h2 {
+        font-family: var(--font-header);
+        color: var(--header-color);
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      /* Header Section */
+      .hero {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background-color: #ffe4e1; /* Light pink background */
-        color: #d82c2c; /* Red text */
+        min-height: 80vh;
         text-align: center;
+        padding: 40px 20px;
       }
-      .container {
-        padding: 20px;
+
+      .hero h1 {
+        font-size: 4rem;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #666;
+      }
+      
+      .placeholder {
+        padding: 50px;
+        background-color: rgba(0,0,0,0.02);
+        border: 2px dashed var(--accent-color);
         border-radius: 15px;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-size: 1.2rem;
+        color: #888;
       }
-      h1 {
-        color: #ff69b4; /* Hot pink for heading */
+
+      footer {
+        padding: 40px 20px;
+        text-align: center;
+        color: #aaa;
+      }
+
+      /* Timeline Section */
+      #timeline {
+        position: relative;
+      }
+
+      .timeline-container {
+        position: relative;
+        padding: 20px 0;
+      }
+
+      /* The vertical line */
+      .timeline-container::after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        background-color: var(--accent-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1.5px;
+        z-index: -1; /* Ensure line is behind circles */
+      }
+
+      /* Timeline item */
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+        box-sizing: border-box;
+      }
+
+      /* The circles on the timeline */
+      .timeline-item::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: -14px; /* Centered: (20px width + 2*4px border) / 2 = 14px */
+        background-color: var(--white-color);
+        border: 4px solid var(--header-color);
+        top: 25px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      /* Items on the left */
+      .left {
+        left: 0;
+      }
+
+      /* Items on the right */
+      .right {
+        left: 50%;
+      }
+
+      /* Add arrows to the left container (pointing right) */
+      .left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 28px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid var(--white-color);
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent var(--white-color);
+      }
+
+      /* Add arrows to the right container (pointing left) */
+      .right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 28px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid var(--white-color);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--white-color) transparent transparent;
+      }
+
+      /* Fix the circle for right-sided items */
+      .right::after {
+        left: -14px; /* Centered: (20px width + 2*4px border) / 2 = 14px */
+      }
+
+      /* The content card */
+      .timeline-content {
+        padding: 20px 30px;
+        background-color: var(--white-color);
+        position: relative;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .timeline-content img {
+        width: 100%;
+        border-radius: 6px;
+        margin-bottom: 15px;
+      }
+
+      .timeline-content h3 {
+        font-family: var(--font-header);
+        font-size: 1.5rem;
+        margin: 0 0 10px 0;
+        color: var(--header-color);
+      }
+
+      .timeline-content time {
+          font-size: 0.9rem;
+          color: #888;
+          margin-bottom: 10px;
+          display: block;
+      }
+
+      /* Media queries for responsiveness */
+      @media screen and (max-width: 768px) {
+        .timeline-container::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item::before {
+          left: 60px;
+          border: medium solid var(--white-color);
+          border-width: 10px 10px 10px 0;
+          border-color: transparent var(--white-color) transparent transparent;
+        }
+
+        .left::after, .right::after {
+          left: 17px; /* (31px line pos) - (28px circle total width / 2) */
+        }
+        
+        .right {
+          left: 0%;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>С Днём Святого Валентина, Лэйс!</h1>
-      <p>Ты мое солнышко, и я тебя очень сильно люблю! ❤️❤️❤️</p>
-    </div>
+
+    <header class="hero">
+      <div class="container">
+        <h1>Для тебя, моя Лэйс</h1>
+        <p>Страничка, полная любви, тепла и наших общих моментов ❤️</p>
+      </div>
+    </header>
+
+    <main>
+      <section id="timeline">
+        <div class="container">
+          <h2 data-aos="fade-up">Таймлайн наших воспоминаний</h2>
+          <div class="timeline-container">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h3>Наша первая встреча</h3>
+                    <time>Февраль 2024</time>
+                    <img src="https://via.placeholder.com/400x250.png?text=Ваше+фото" alt="Описание фото">
+                    <p>Тот самый день, когда все началось. Замени этот текст и фото на свое воспоминание!</p>
+                </div>
+            </div>
+        
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h3>Первая совместная поездка</h3>
+                    <time>Июль 2024</time>
+                    <img src="https://via.placeholder.com/400x250.png?text=Ваше+фото" alt="Описание фото">
+                    <p>Незабываемое путешествие, полное приключений и смеха. Добавь сюда вашу историю.</p>
+                </div>
+            </div>
+        
+            <!-- Add more items here -->
+        </div>
+        </div>
+      </section>
+
+      <section id="memes">
+        <div class="container">
+          <h2 data-aos="fade-up">Галерея наших "внутренних мемов"</h2>
+          <div class="placeholder" data-aos="fade-up">
+            <p>А сюда мы добавим наши шутки: "Лэйс и Васяби", "Вредная жопа" и другие. Можно с иконками!</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="adventures">
+        <div class="container">
+          <h2 data-aos="fade-up">Карта будущих приключений</h2>
+          <div class="placeholder" data-aos="fade-up">
+            <p>Коллаж из мест, где мы побываем: Япония, море, домик в лесу...</p>
+          </div>
+        </div>
+      </section>
+      
+
+
+
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>Сделано с любовью для самой лучшей девушки на свете. 2026</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800, // Animation duration
+        once: true, // Whether animation should happen only once
+      });
+    </script>
   </body>
 </html>
