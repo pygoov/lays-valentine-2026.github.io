@@ -3,311 +3,685 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Моей любимой Лэйс</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <meta name="theme-color" content="#fff4ea" />
+    <title>Для моей Лэйс</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Sora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <style>
+      @property --halo-angle {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+
       :root {
-        --bg-color: #fdf6f6;
-        --text-color: #444;
-        --header-color: #d87093; /* PaleVioletRed */
-        --accent-color: #ffb6c1; /* LightPink */
-        --white-color: #ffffff;
-        --font-header: 'Playfair Display', serif;
-        --font-body: 'Montserrat', sans-serif;
+        --bg-a: #fff7ef;
+        --bg-b: #ffe7db;
+        --bg-c: #ffd8de;
+        --ink-900: #261827;
+        --ink-700: #4b3248;
+        --surface: rgba(255, 255, 255, 0.58);
+        --surface-strong: rgba(255, 255, 255, 0.78);
+        --line: rgba(255, 255, 255, 0.7);
+        --accent: #ff5f93;
+        --accent-warm: #ff885f;
+        --shadow: 0 18px 48px rgba(83, 32, 50, 0.2);
+        --max-width: min(1120px, 92vw);
+        --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
       }
 
-      body {
-        font-family: var(--font-body);
-        margin: 0;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        overflow-x: hidden;
-      }
-
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      section {
-        padding: 60px 0;
-        border-bottom: 1px solid #eee;
-      }
-
-      h1, h2 {
-        font-family: var(--font-header);
-        color: var(--header-color);
-        text-align: center;
-        margin-bottom: 40px;
-      }
-      
-      h2 {
-        font-size: 2.5rem;
-      }
-
-      /* Header Section */
-      .hero {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 80vh;
-        text-align: center;
-        padding: 40px 20px;
-      }
-
-      .hero h1 {
-        font-size: 4rem;
-        margin-bottom: 10px;
-      }
-
-      .hero p {
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: #666;
-      }
-      
-      .placeholder {
-        padding: 50px;
-        background-color: rgba(0,0,0,0.02);
-        border: 2px dashed var(--accent-color);
-        border-radius: 15px;
-        text-align: center;
-        font-size: 1.2rem;
-        color: #888;
-      }
-
-      footer {
-        padding: 40px 20px;
-        text-align: center;
-        color: #aaa;
-      }
-
-      /* Timeline Section */
-      #timeline {
-        position: relative;
-      }
-
-      .timeline-container {
-        position: relative;
-        padding: 20px 0;
-      }
-
-      /* The vertical line */
-      .timeline-container::after {
-        content: '';
-        position: absolute;
-        width: 3px;
-        background-color: var(--accent-color);
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -1.5px;
-        z-index: -1; /* Ensure line is behind circles */
-      }
-
-      /* Timeline item */
-      .timeline-item {
-        padding: 10px 40px;
-        position: relative;
-        background-color: inherit;
-        width: 50%;
+      * {
         box-sizing: border-box;
       }
 
-      /* The circles on the timeline */
-      .timeline-item::after {
-        content: '';
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        color: var(--ink-900);
+        font-family: "Sora", "Segoe UI", sans-serif;
+        background: radial-gradient(120% 120% at 10% 5%, #fff 0%, var(--bg-a) 45%, transparent 75%),
+          radial-gradient(90% 70% at 85% 8%, rgba(255, 156, 164, 0.35), transparent 70%),
+          linear-gradient(140deg, var(--bg-a), var(--bg-b) 50%, var(--bg-c));
+        overflow-x: hidden;
+      }
+
+      .scene {
+        position: fixed;
+        inset: -20vmax;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .scene::before {
+        content: "";
         position: absolute;
-        width: 20px;
-        height: 20px;
-        right: -14px; /* Centered: (20px width + 2*4px border) / 2 = 14px */
-        background-color: var(--white-color);
-        border: 4px solid var(--header-color);
-        top: 25px;
+        inset: 0;
+        background: conic-gradient(
+          from var(--halo-angle),
+          rgba(255, 119, 151, 0.5),
+          rgba(255, 196, 130, 0.5),
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 119, 151, 0.5)
+        );
+        filter: blur(120px);
+        opacity: 0.6;
+        animation: haloSpin 22s linear infinite;
+      }
+
+      .scene::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+        background-size: 3px 3px;
+        opacity: 0.3;
+        mix-blend-mode: soft-light;
+      }
+
+      .orb {
+        position: absolute;
         border-radius: 50%;
-        z-index: 1;
+        filter: blur(15px);
+        transform-origin: center;
       }
 
-      /* Items on the left */
-      .left {
-        left: 0;
+      .orb-one {
+        width: 42vmax;
+        height: 42vmax;
+        left: -8vmax;
+        top: 2vmax;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.75), rgba(255, 122, 148, 0.55));
+        animation: driftOne 14s ease-in-out infinite alternate;
       }
 
-      /* Items on the right */
-      .right {
-        left: 50%;
+      .orb-two {
+        width: 32vmax;
+        height: 32vmax;
+        right: -8vmax;
+        top: 35vmax;
+        background: radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.7), rgba(255, 157, 101, 0.55));
+        animation: driftTwo 11s ease-in-out infinite alternate;
       }
 
-      /* Add arrows to the left container (pointing right) */
-      .left::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 28px;
-        width: 0;
-        z-index: 1;
-        right: 30px;
-        border: medium solid var(--white-color);
-        border-width: 10px 0 10px 10px;
-        border-color: transparent transparent transparent var(--white-color);
+      .orb-three {
+        width: 28vmax;
+        height: 28vmax;
+        left: 40vw;
+        bottom: -12vmax;
+        background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.75), rgba(255, 140, 182, 0.52));
+        animation: driftThree 18s ease-in-out infinite alternate;
       }
 
-      /* Add arrows to the right container (pointing left) */
-      .right::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 28px;
-        width: 0;
-        z-index: 1;
-        left: 30px;
-        border: medium solid var(--white-color);
-        border-width: 10px 10px 10px 0;
-        border-color: transparent var(--white-color) transparent transparent;
-      }
-
-      /* Fix the circle for right-sided items */
-      .right::after {
-        left: -14px; /* Centered: (20px width + 2*4px border) / 2 = 14px */
-      }
-
-      /* The content card */
-      .timeline-content {
-        padding: 20px 30px;
-        background-color: var(--white-color);
+      .page {
         position: relative;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        z-index: 1;
+        width: var(--max-width);
+        margin: 0 auto;
+        padding: clamp(18px, 4vw, 42px) 0 clamp(36px, 8vw, 96px);
       }
 
-      .timeline-content img {
-        width: 100%;
-        border-radius: 6px;
-        margin-bottom: 15px;
+      .hero {
+        --spot-x: 50%;
+        --spot-y: 50%;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        border-radius: clamp(24px, 4vw, 42px);
+        padding: clamp(24px, 8vw, 80px) clamp(18px, 6vw, 64px);
+        backdrop-filter: blur(14px) saturate(150%);
+        background: linear-gradient(140deg, var(--surface-strong), var(--surface));
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        text-align: center;
       }
 
-      .timeline-content h3 {
-        font-family: var(--font-header);
-        font-size: 1.5rem;
-        margin: 0 0 10px 0;
-        color: var(--header-color);
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.85),
+          rgba(255, 141, 174, 0.55),
+          rgba(255, 193, 118, 0.4),
+          rgba(255, 255, 255, 0.85)
+        );
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
       }
 
-      .timeline-content time {
-          font-size: 0.9rem;
-          color: #888;
-          margin-bottom: 10px;
-          display: block;
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: -25%;
+        background: radial-gradient(
+          circle at var(--spot-x) var(--spot-y),
+          rgba(255, 255, 255, 0.65),
+          rgba(255, 255, 255, 0) 42%
+        );
+        z-index: -1;
+        opacity: 0.85;
       }
 
-      /* Media queries for responsiveness */
-      @media screen and (max-width: 768px) {
-        .timeline-container::after {
-          left: 31px;
+      .eyebrow {
+        margin: 0;
+        font-size: clamp(0.72rem, 2.2vw, 0.98rem);
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(75, 50, 72, 0.72);
+      }
+
+      .hero-title {
+        margin: clamp(14px, 3vw, 22px) auto 0;
+        max-width: 14ch;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(2.3rem, 10vw, 7rem);
+        line-height: 0.9;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        background: linear-gradient(
+          118deg,
+          #643047 0%,
+          #ff5f93 26%,
+          #ff9658 52%,
+          #7c3556 78%,
+          #643047 100%
+        );
+        background-size: 220% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: titleWave 9s linear infinite;
+      }
+
+      .subtitle {
+        margin: clamp(12px, 3vw, 24px) auto 0;
+        max-width: 52ch;
+        font-size: clamp(1rem, 2.8vw, 1.35rem);
+        line-height: 1.6;
+        color: var(--ink-700);
+      }
+
+      .hero-actions {
+        margin-top: clamp(18px, 4.5vw, 34px);
+      }
+
+      .love-button {
+        appearance: none;
+        cursor: pointer;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.95rem 1.45rem;
+        font-weight: 600;
+        font-family: inherit;
+        font-size: clamp(0.96rem, 2.4vw, 1.05rem);
+        color: #fff;
+        background: linear-gradient(120deg, var(--accent), var(--accent-warm));
+        box-shadow: 0 10px 26px rgba(255, 96, 146, 0.35);
+        transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth),
+          filter 0.25s var(--ease-smooth);
+        animation: buttonPulse 2.8s ease-in-out infinite;
+      }
+
+      .love-button:focus-visible {
+        outline: 2px solid rgba(255, 95, 147, 0.86);
+        outline-offset: 3px;
+      }
+
+      .hero-meta {
+        margin-top: clamp(18px, 4vw, 28px);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hero-meta span {
+        padding: 0.58rem 0.92rem;
+        border-radius: 999px;
+        font-size: clamp(0.74rem, 2vw, 0.88rem);
+        color: rgba(61, 39, 59, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(8px);
+      }
+
+      .cards {
+        margin-top: clamp(22px, 5vw, 44px);
+        display: grid;
+        gap: clamp(14px, 3vw, 20px);
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: clamp(18px, 2.7vw, 28px);
+        padding: clamp(16px, 4vw, 26px);
+        border: 1px solid rgba(255, 255, 255, 0.68);
+        background: linear-gradient(148deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.56));
+        box-shadow: 0 14px 34px rgba(90, 39, 52, 0.12);
+        backdrop-filter: blur(10px);
+        transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: -45% auto auto -18%;
+        width: 58%;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 129, 170, 0.3), rgba(255, 129, 170, 0));
+        transform: rotate(-12deg);
+      }
+
+      .card-index {
+        width: 2.2rem;
+        height: 2.2rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        color: #fff;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+        box-shadow: 0 8px 20px rgba(255, 96, 147, 0.26);
+      }
+
+      .card h2 {
+        margin: 12px 0 8px;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(1.45rem, 5vw, 2.1rem);
+        line-height: 1.1;
+        color: #48263c;
+      }
+
+      .card p {
+        margin: 0;
+        color: rgba(69, 44, 65, 0.88);
+        line-height: 1.65;
+        font-size: clamp(0.95rem, 2.5vw, 1.02rem);
+      }
+
+      .letter {
+        margin-top: clamp(22px, 5vw, 46px);
+        border-radius: clamp(20px, 3vw, 32px);
+        padding: clamp(18px, 5vw, 40px);
+        background: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(255, 244, 228, 0.86));
+        border: 1px solid rgba(255, 255, 255, 0.84);
+        box-shadow: 0 14px 36px rgba(96, 44, 47, 0.12);
+      }
+
+      .letter-kicker {
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: clamp(0.69rem, 1.8vw, 0.84rem);
+        color: rgba(81, 44, 59, 0.72);
+      }
+
+      .letter h2 {
+        margin: 10px 0 0;
+        max-width: 14ch;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(2rem, 8vw, 4.2rem);
+        line-height: 0.92;
+        color: #43253a;
+      }
+
+      .letter p {
+        margin: clamp(12px, 2.5vw, 18px) 0 0;
+        max-width: 52ch;
+        line-height: 1.7;
+        font-size: clamp(0.96rem, 2.6vw, 1.08rem);
+        color: rgba(69, 44, 65, 0.9);
+      }
+
+      .footer {
+        margin-top: clamp(20px, 4vw, 34px);
+        text-align: center;
+        color: rgba(70, 48, 66, 0.7);
+        font-size: clamp(0.78rem, 2vw, 0.9rem);
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(34px);
+        transition: opacity 0.9s var(--ease-smooth), transform 0.9s var(--ease-smooth);
+      }
+
+      .js .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .heart-rain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 8;
+      }
+
+      .heart {
+        position: fixed;
+        left: var(--x);
+        top: var(--y);
+        font-size: var(--size);
+        color: rgba(255, 82, 135, 0.92);
+        text-shadow: 0 0 10px rgba(255, 106, 162, 0.4);
+        animation: heartBurst var(--dur) ease-out forwards;
+        will-change: transform, opacity;
+      }
+
+      @keyframes driftOne {
+        0% {
+          transform: translate(-2%, -1%) scale(1);
+        }
+        100% {
+          transform: translate(4%, 3%) scale(1.12);
+        }
+      }
+
+      @keyframes driftTwo {
+        0% {
+          transform: translate(1%, -2%) scale(1);
+        }
+        100% {
+          transform: translate(-5%, 5%) scale(1.1);
+        }
+      }
+
+      @keyframes driftThree {
+        0% {
+          transform: translate(-2%, 2%) scale(1);
+        }
+        100% {
+          transform: translate(4%, -4%) scale(1.16);
+        }
+      }
+
+      @keyframes haloSpin {
+        to {
+          --halo-angle: 1turn;
+        }
+      }
+
+      @keyframes titleWave {
+        to {
+          background-position: 220% center;
+        }
+      }
+
+      @keyframes buttonPulse {
+        0%,
+        100% {
+          box-shadow: 0 10px 26px rgba(255, 96, 146, 0.35);
+          transform: translateY(0);
+        }
+        50% {
+          box-shadow: 0 14px 34px rgba(255, 96, 146, 0.45);
+          transform: translateY(-2px);
+        }
+      }
+
+      @keyframes heartBurst {
+        0% {
+          opacity: 0;
+          transform: translate(0, 0) scale(0.5) rotate(0deg);
+        }
+        12% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(var(--tx), var(--ty)) scale(1.18) rotate(var(--rot));
+        }
+      }
+
+      @media (min-width: 880px) {
+        .cards {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .love-button:hover {
+          transform: translateY(-3px) scale(1.02);
+          filter: saturate(1.06);
+          box-shadow: 0 16px 34px rgba(255, 96, 146, 0.43);
         }
 
-        .timeline-item {
-          width: 100%;
-          padding-left: 70px;
-          padding-right: 25px;
+        .card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 42px rgba(90, 39, 52, 0.2);
+        }
+      }
+
+      @media (max-width: 620px) {
+        .hero-title {
+          line-height: 0.96;
         }
 
-        .timeline-item::before {
-          left: 60px;
-          border: medium solid var(--white-color);
-          border-width: 10px 10px 10px 0;
-          border-color: transparent var(--white-color) transparent transparent;
+        .hero-meta {
+          gap: 8px;
+        }
+      }
+
+      @supports not (backdrop-filter: blur(4px)) {
+        .hero,
+        .card,
+        .letter {
+          background: rgba(255, 255, 255, 0.9);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
         }
 
-        .left::after, .right::after {
-          left: 17px; /* (31px line pos) - (28px circle total width / 2) */
-        }
-        
-        .right {
-          left: 0%;
+        .reveal {
+          opacity: 1;
+          transform: none;
         }
       }
     </style>
   </head>
   <body>
+    <div class="scene" aria-hidden="true">
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+      <div class="orb orb-three"></div>
+    </div>
 
-    <header class="hero">
-      <div class="container">
-        <h1>Для тебя, моя Лэйс</h1>
-        <p>Страничка, полная любви, тепла и наших общих моментов ❤️</p>
-      </div>
-    </header>
+    <main class="page">
+      <header class="hero reveal">
+        <p class="eyebrow">Для моей Лэйс</p>
+        <h1 class="hero-title">Лэйс, ты мой дом, мой драйв и мое вдохновение</h1>
+        <p class="subtitle">
+          Ты рисуешь мир ярче, творишь магию своими руками и делаешь мою жизнь живой, теплой и
+          настоящей. Эта страница только об одном: как сильно я тебя люблю.
+        </p>
+        <div class="hero-actions">
+          <button id="loveButton" class="love-button" type="button">Нажми на меня</button>
+        </div>
+        <div class="hero-meta">
+          <span>Лэйс и Васяби</span>
+          <span>Аниме и касание ногами</span>
+          <span>Поцелуй в лобик у лифта</span>
+        </div>
+      </header>
 
-    <main>
-      <section id="timeline">
-        <div class="container">
-          <h2 data-aos="fade-up">Таймлайн наших воспоминаний</h2>
-          <div class="timeline-container">
-            <!-- Timeline Item 1 -->
-            <div class="timeline-item left" data-aos="fade-right">
-                <div class="timeline-content">
-                    <h3>Наша первая встреча</h3>
-                    <time>Февраль 2024</time>
-                    <img src="https://via.placeholder.com/400x250.png?text=Ваше+фото" alt="Описание фото">
-                    <p>Тот самый день, когда все началось. Замени этот текст и фото на свое воспоминание!</p>
-                </div>
-            </div>
-        
-            <!-- Timeline Item 2 -->
-            <div class="timeline-item right" data-aos="fade-left">
-                <div class="timeline-content">
-                    <h3>Первая совместная поездка</h3>
-                    <time>Июль 2024</time>
-                    <img src="https://via.placeholder.com/400x250.png?text=Ваше+фото" alt="Описание фото">
-                    <p>Незабываемое путешествие, полное приключений и смеха. Добавь сюда вашу историю.</p>
-                </div>
-            </div>
-        
-            <!-- Add more items here -->
-        </div>
-        </div>
+      <section class="cards reveal" aria-label="Три причины, почему ты особенная">
+        <article class="card">
+          <div class="card-index">1</div>
+          <h2>Твой творческий огонь</h2>
+          <p>
+            Ты и художник, и дизайнер, и косплеер, и настоящая волшебница с пластилином в руках.
+            Мне безумно нравится, как ты создаешь красоту из всего, к чему прикасаешься.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-index">2</div>
+          <h2>Твоя сила и свет</h2>
+          <p>
+            Ты упрямая в лучшем смысле, сильная и очень живая. Даже когда сложно, ты умеешь
+            собраться и снова сиять. Твоя энергия и твой оптимизм вдохновляют меня каждый день.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-index">3</div>
+          <h2>Наши маленькие ритуалы</h2>
+          <p>
+            Я обожаю наши завтраки, твои объятия сзади, когда я мою посуду, наши аниме-вечера и
+            тот поцелуй в лобик перед лифтом. В этих мелочах и есть мое настоящее счастье.
+          </p>
+        </article>
       </section>
 
-      <section id="memes">
-        <div class="container">
-          <h2 data-aos="fade-up">Галерея наших "внутренних мемов"</h2>
-          <div class="placeholder" data-aos="fade-up">
-            <p>А сюда мы добавим наши шутки: "Лэйс и Васяби", "Вредная жопа" и другие. Можно с иконками!</p>
-          </div>
-        </div>
+      <section class="letter reveal">
+        <p class="letter-kicker">Мое письмо тебе</p>
+        <h2>Сегодня. Завтра. И во все наши дни.</h2>
+        <p>
+          Спасибо тебе за тепло, за поддержку и за нас. Я хочу рядом с тобой радоваться каждому
+          дню, верить в твою студию мечты, вместе доехать до Японии и обязательно увидеть море.
+          Люблю тебя сильно. Очень.
+        </p>
       </section>
 
-      <section id="adventures">
-        <div class="container">
-          <h2 data-aos="fade-up">Карта будущих приключений</h2>
-          <div class="placeholder" data-aos="fade-up">
-            <p>Коллаж из мест, где мы побываем: Япония, море, домик в лесу...</p>
-          </div>
-        </div>
-      </section>
-      
-
-
-
+      <footer class="footer reveal">
+        <p>С любовью, для тебя • <span id="year"></span></p>
+      </footer>
     </main>
 
-    <footer>
-      <div class="container">
-        <p>Сделано с любовью для самой лучшей девушки на свете. 2026</p>
-      </div>
-    </footer>
+    <div id="heartRain" class="heart-rain" aria-hidden="true"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-      AOS.init({
-        duration: 800, // Animation duration
-        once: true, // Whether animation should happen only once
-      });
+      (() => {
+        const hero = document.querySelector(".hero");
+        const loveButton = document.getElementById("loveButton");
+        const heartRain = document.getElementById("heartRain");
+        const yearNode = document.getElementById("year");
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (yearNode) {
+          yearNode.textContent = String(new Date().getFullYear());
+        }
+
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && hero) {
+          hero.addEventListener("pointermove", (event) => {
+            const rect = hero.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            hero.style.setProperty("--spot-x", `${x.toFixed(2)}%`);
+            hero.style.setProperty("--spot-y", `${y.toFixed(2)}%`);
+          });
+
+          hero.addEventListener("pointerleave", () => {
+            hero.style.setProperty("--spot-x", "50%");
+            hero.style.setProperty("--spot-y", "50%");
+          });
+        }
+
+        const burstHearts = (x, y, count = 24) => {
+          if (!heartRain || reducedMotion) {
+            return;
+          }
+
+          for (let i = 0; i < count; i += 1) {
+            const heart = document.createElement("span");
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 80 + Math.random() * 220;
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance - 80;
+
+            heart.className = "heart";
+            heart.textContent = Math.random() > 0.3 ? "❤" : "✦";
+            heart.style.setProperty("--x", `${x}px`);
+            heart.style.setProperty("--y", `${y}px`);
+            heart.style.setProperty("--tx", `${tx.toFixed(1)}px`);
+            heart.style.setProperty("--ty", `${ty.toFixed(1)}px`);
+            heart.style.setProperty("--rot", `${(Math.random() * 120 - 60).toFixed(0)}deg`);
+            heart.style.setProperty("--dur", `${(950 + Math.random() * 950).toFixed(0)}ms`);
+            heart.style.setProperty("--size", `${(12 + Math.random() * 16).toFixed(0)}px`);
+
+            heartRain.appendChild(heart);
+            heart.addEventListener(
+              "animationend",
+              () => {
+                heart.remove();
+              },
+              { once: true }
+            );
+          }
+        };
+
+        if (loveButton) {
+          loveButton.addEventListener("click", (event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 32);
+          });
+        }
+
+        window.addEventListener(
+          "load",
+          () => {
+            if (!reducedMotion) {
+              burstHearts(window.innerWidth * 0.5, window.innerHeight * 0.44, 20);
+            }
+          },
+          { once: true }
+        );
+
+        const revealElements = document.querySelectorAll(".reveal");
+        if (revealElements.length === 0) {
+          return;
+        }
+
+        if (!("IntersectionObserver" in window)) {
+          revealElements.forEach((node) => node.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.22 }
+        );
+
+        revealElements.forEach((node) => observer.observe(node));
+      })();
     </script>
   </body>
 </html>
