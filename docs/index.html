@@ -50,8 +50,18 @@
       body {
         color: var(--ink-900);
         font-family: "Sora", "Segoe UI", sans-serif;
-        background: radial-gradient(120% 120% at 10% 5%, #fff 0%, var(--bg-a) 45%, transparent 75%),
-          radial-gradient(90% 70% at 85% 8%, rgba(255, 156, 164, 0.35), transparent 70%),
+        background:
+          radial-gradient(
+            120% 120% at 10% 5%,
+            #fff 0%,
+            var(--bg-a) 45%,
+            transparent 75%
+          ),
+          radial-gradient(
+            90% 70% at 85% 8%,
+            rgba(255, 156, 164, 0.35),
+            transparent 70%
+          ),
           linear-gradient(140deg, var(--bg-a), var(--bg-b) 50%, var(--bg-c));
         overflow-x: hidden;
       }
@@ -84,7 +94,10 @@
         content: "";
         position: absolute;
         inset: 0;
-        background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.35) 1px,
+          transparent 1px
+        );
         background-size: 3px 3px;
         opacity: 0.3;
         mix-blend-mode: soft-light;
@@ -102,7 +115,11 @@
         height: 42vmax;
         left: -8vmax;
         top: 2vmax;
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.75), rgba(255, 122, 148, 0.55));
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.75),
+          rgba(255, 122, 148, 0.55)
+        );
         animation: driftOne 14s ease-in-out infinite alternate;
       }
 
@@ -111,7 +128,11 @@
         height: 32vmax;
         right: -8vmax;
         top: 35vmax;
-        background: radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.7), rgba(255, 157, 101, 0.55));
+        background: radial-gradient(
+          circle at 25% 20%,
+          rgba(255, 255, 255, 0.7),
+          rgba(255, 157, 101, 0.55)
+        );
         animation: driftTwo 11s ease-in-out infinite alternate;
       }
 
@@ -120,7 +141,11 @@
         height: 28vmax;
         left: 40vw;
         bottom: -12vmax;
-        background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.75), rgba(255, 140, 182, 0.52));
+        background: radial-gradient(
+          circle at 40% 35%,
+          rgba(255, 255, 255, 0.75),
+          rgba(255, 140, 182, 0.52)
+        );
         animation: driftThree 18s ease-in-out infinite alternate;
       }
 
@@ -141,7 +166,11 @@
         border-radius: clamp(24px, 4vw, 42px);
         padding: clamp(24px, 8vw, 80px) clamp(18px, 6vw, 64px);
         backdrop-filter: blur(14px) saturate(150%);
-        background: linear-gradient(140deg, var(--surface-strong), var(--surface));
+        background: linear-gradient(
+          140deg,
+          var(--surface-strong),
+          var(--surface)
+        );
         border: 1px solid var(--line);
         box-shadow: var(--shadow);
         text-align: center;
@@ -160,7 +189,9 @@
           rgba(255, 193, 118, 0.4),
           rgba(255, 255, 255, 0.85)
         );
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         pointer-events: none;
@@ -226,6 +257,7 @@
         appearance: none;
         cursor: pointer;
         border: 0;
+        outline: none;
         border-radius: 999px;
         padding: 0.95rem 1.45rem;
         font-weight: 600;
@@ -234,14 +266,20 @@
         color: #fff;
         background: linear-gradient(120deg, var(--accent), var(--accent-warm));
         box-shadow: 0 10px 26px rgba(255, 96, 146, 0.35);
-        transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth),
+        transform: translate3d(0, 0, 0);
+        will-change: transform;
+        backface-visibility: hidden;
+        transition:
+          transform 0.25s var(--ease-smooth),
+          box-shadow 0.25s var(--ease-smooth),
           filter 0.25s var(--ease-smooth);
-        animation: buttonPulse 2.8s ease-in-out infinite;
+        animation: buttonPulse 1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        -webkit-tap-highlight-color: transparent;
       }
 
+      .love-button:focus,
       .love-button:focus-visible {
-        outline: 2px solid rgba(255, 95, 147, 0.86);
-        outline-offset: 3px;
+        outline: none;
       }
 
       .hero-meta {
@@ -274,10 +312,16 @@
         border-radius: clamp(18px, 2.7vw, 28px);
         padding: clamp(16px, 4vw, 26px);
         border: 1px solid rgba(255, 255, 255, 0.68);
-        background: linear-gradient(148deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.56));
+        background: linear-gradient(
+          148deg,
+          rgba(255, 255, 255, 0.84),
+          rgba(255, 255, 255, 0.56)
+        );
         box-shadow: 0 14px 34px rgba(90, 39, 52, 0.12);
         backdrop-filter: blur(10px);
-        transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
+        transition:
+          transform 0.35s var(--ease-smooth),
+          box-shadow 0.35s var(--ease-smooth);
       }
 
       .card::before {
@@ -287,7 +331,11 @@
         width: 58%;
         aspect-ratio: 1 / 1;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(255, 129, 170, 0.3), rgba(255, 129, 170, 0));
+        background: radial-gradient(
+          circle,
+          rgba(255, 129, 170, 0.3),
+          rgba(255, 129, 170, 0)
+        );
         transform: rotate(-12deg);
       }
 
@@ -322,7 +370,11 @@
         margin-top: clamp(22px, 5vw, 46px);
         border-radius: clamp(20px, 3vw, 32px);
         padding: clamp(18px, 5vw, 40px);
-        background: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(255, 244, 228, 0.86));
+        background: linear-gradient(
+          155deg,
+          rgba(255, 255, 255, 0.88),
+          rgba(255, 244, 228, 0.86)
+        );
         border: 1px solid rgba(255, 255, 255, 0.84);
         box-shadow: 0 14px 36px rgba(96, 44, 47, 0.12);
       }
@@ -367,7 +419,9 @@
       .js .reveal {
         opacity: 0;
         transform: translateY(34px);
-        transition: opacity 0.9s var(--ease-smooth), transform 0.9s var(--ease-smooth);
+        transition:
+          opacity 0.9s var(--ease-smooth),
+          transform 0.9s var(--ease-smooth);
       }
 
       .js .reveal.is-visible {
@@ -436,12 +490,16 @@
       @keyframes buttonPulse {
         0%,
         100% {
-          box-shadow: 0 10px 26px rgba(255, 96, 146, 0.35);
-          transform: translateY(0);
+          transform: translate3d(0, 0, 0);
+        }
+        25% {
+          transform: translate3d(0, -2px, 0);
         }
         50% {
-          box-shadow: 0 14px 34px rgba(255, 96, 146, 0.45);
-          transform: translateY(-2px);
+          transform: translate3d(0, -4px, 0);
+        }
+        75% {
+          transform: translate3d(0, -2px, 0);
         }
       }
 
@@ -455,7 +513,8 @@
         }
         100% {
           opacity: 0;
-          transform: translate(var(--tx), var(--ty)) scale(1.18) rotate(var(--rot));
+          transform: translate(var(--tx), var(--ty)) scale(1.18)
+            rotate(var(--rot));
         }
       }
 
@@ -467,6 +526,7 @@
 
       @media (hover: hover) and (pointer: fine) {
         .love-button:hover {
+          animation: none;
           transform: translateY(-3px) scale(1.02);
           filter: saturate(1.06);
           box-shadow: 0 16px 34px rgba(255, 96, 146, 0.43);
@@ -522,13 +582,18 @@
     <main class="page">
       <header class="hero reveal">
         <p class="eyebrow">Для моей Лэйс</p>
-        <h1 class="hero-title">Лэйс, ты мой дом, мой драйв и мое вдохновение</h1>
+        <h1 class="hero-title">
+          Лэйс, ты мой дом, мой драйв и мое вдохновение
+        </h1>
         <p class="subtitle">
-          Ты рисуешь мир ярче, творишь магию своими руками и делаешь мою жизнь живой, теплой и
-          настоящей. Эта страница только об одном: как сильно я тебя люблю.
+          Ты рисуешь мир ярче, творишь магию своими руками и делаешь мою жизнь
+          живой, теплой и настоящей. Эта страница только об одном: как сильно я
+          тебя люблю.
         </p>
         <div class="hero-actions">
-          <button id="loveButton" class="love-button" type="button">Нажми на меня</button>
+          <button id="loveButton" class="love-button" type="button">
+            Нажми на меня
+          </button>
         </div>
         <div class="hero-meta">
           <span>Лэйс и Васяби</span>
@@ -537,29 +602,35 @@
         </div>
       </header>
 
-      <section class="cards reveal" aria-label="Три причины, почему ты особенная">
+      <section
+        class="cards reveal"
+        aria-label="Три причины, почему ты особенная"
+      >
         <article class="card">
           <div class="card-index">1</div>
           <h2>Твой творческий огонь</h2>
           <p>
-            Ты и художник, и дизайнер, и косплеер, и настоящая волшебница с пластилином в руках.
-            Мне безумно нравится, как ты создаешь красоту из всего, к чему прикасаешься.
+            Ты и художник, и дизайнер, и косплеер, и настоящая волшебница с
+            пластилином в руках. Мне безумно нравится, как ты создаешь красоту
+            из всего, к чему прикасаешься.
           </p>
         </article>
         <article class="card">
           <div class="card-index">2</div>
           <h2>Твоя сила и свет</h2>
           <p>
-            Ты упрямая в лучшем смысле, сильная и очень живая. Даже когда сложно, ты умеешь
-            собраться и снова сиять. Твоя энергия и твой оптимизм вдохновляют меня каждый день.
+            Ты упрямая в лучшем смысле, сильная и очень живая. Даже когда
+            сложно, ты умеешь собраться и снова сиять. Твоя энергия и твой
+            оптимизм вдохновляют меня каждый день.
           </p>
         </article>
         <article class="card">
           <div class="card-index">3</div>
           <h2>Наши маленькие ритуалы</h2>
           <p>
-            Я обожаю наши завтраки, твои объятия сзади, когда я мою посуду, наши аниме-вечера и
-            тот поцелуй в лобик перед лифтом. В этих мелочах и есть мое настоящее счастье.
+            Я обожаю наши завтраки, твои объятия сзади, когда я мою посуду, наши
+            аниме-вечера и тот поцелуй в лобик перед лифтом. В этих мелочах и
+            есть мое настоящее счастье.
           </p>
         </article>
       </section>
@@ -568,9 +639,9 @@
         <p class="letter-kicker">Мое письмо тебе</p>
         <h2>Сегодня. Завтра. И во все наши дни.</h2>
         <p>
-          Спасибо тебе за тепло, за поддержку и за нас. Я хочу рядом с тобой радоваться каждому
-          дню, верить в твою студию мечты, вместе доехать до Японии и обязательно увидеть море.
-          Люблю тебя сильно. Очень.
+          Спасибо тебе за тепло, за поддержку и за нас. Я хочу рядом с тобой
+          радоваться каждому дню, верить в твою студию мечты, вместе доехать до
+          Японии и обязательно увидеть море. Люблю тебя сильно. Очень.
         </p>
       </section>
 
@@ -587,13 +658,18 @@
         const loveButton = document.getElementById("loveButton");
         const heartRain = document.getElementById("heartRain");
         const yearNode = document.getElementById("year");
-        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
 
         if (yearNode) {
           yearNode.textContent = String(new Date().getFullYear());
         }
 
-        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && hero) {
+        if (
+          window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+          hero
+        ) {
           hero.addEventListener("pointermove", (event) => {
             const rect = hero.getBoundingClientRect();
             const x = ((event.clientX - rect.left) / rect.width) * 100;
@@ -626,9 +702,18 @@
             heart.style.setProperty("--y", `${y}px`);
             heart.style.setProperty("--tx", `${tx.toFixed(1)}px`);
             heart.style.setProperty("--ty", `${ty.toFixed(1)}px`);
-            heart.style.setProperty("--rot", `${(Math.random() * 120 - 60).toFixed(0)}deg`);
-            heart.style.setProperty("--dur", `${(950 + Math.random() * 950).toFixed(0)}ms`);
-            heart.style.setProperty("--size", `${(12 + Math.random() * 16).toFixed(0)}px`);
+            heart.style.setProperty(
+              "--rot",
+              `${(Math.random() * 120 - 60).toFixed(0)}deg`,
+            );
+            heart.style.setProperty(
+              "--dur",
+              `${(950 + Math.random() * 950).toFixed(0)}ms`,
+            );
+            heart.style.setProperty(
+              "--size",
+              `${(12 + Math.random() * 16).toFixed(0)}px`,
+            );
 
             heartRain.appendChild(heart);
             heart.addEventListener(
@@ -636,7 +721,7 @@
               () => {
                 heart.remove();
               },
-              { once: true }
+              { once: true },
             );
           }
         };
@@ -644,19 +729,13 @@
         if (loveButton) {
           loveButton.addEventListener("click", (event) => {
             const rect = event.currentTarget.getBoundingClientRect();
-            burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 32);
+            burstHearts(
+              rect.left + rect.width / 2,
+              rect.top + rect.height / 2,
+              32,
+            );
           });
         }
-
-        window.addEventListener(
-          "load",
-          () => {
-            if (!reducedMotion) {
-              burstHearts(window.innerWidth * 0.5, window.innerHeight * 0.44, 20);
-            }
-          },
-          { once: true }
-        );
 
         const revealElements = document.querySelectorAll(".reveal");
         if (revealElements.length === 0) {
@@ -677,7 +756,7 @@
               }
             });
           },
-          { threshold: 0.22 }
+          { threshold: 0.22 },
         );
 
         revealElements.forEach((node) => observer.observe(node));
